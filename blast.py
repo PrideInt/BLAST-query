@@ -10,17 +10,6 @@ for record in SeqIO.parse("test.fastq", "fastq"):
     print(record.seq)
 '''
 
-# Put all your FASTQ files in the "fastq" folder.
-# Then, we will convert all the FASTQ files to FASTA files so that we can BLAST.
-
-'''
-fastq_folder = "fastq/"
-
-for fastq_file in os.listdir(fastq_folder):
-    print(fastq_file)
-    SeqIO.convert(fastq_folder + fastq_file, "fastq", fastq_folder + fastq_file.split(".")[0] + ".fasta", "fasta")
-'''
-
 fasta = open("test.fasta")
 
 result_handle = NCBIWWW.qblast(program="blastn", database="nt", sequence=fasta.read())
