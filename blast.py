@@ -10,31 +10,30 @@ for record in SeqIO.parse("test.fastq", "fastq"):
     print(record.seq)
 '''
 
-fasta = open("test.fasta")
+'''
+def query_rid(blast, database, rid):
+    result_handle = NCBIWWW.qblast(blast, database, rid)
 
-result_handle = NCBIWWW.qblast(program="blastn", database="nt", sequence=fasta.read())
+    with open(rid + ".xml", "w") as out_handle:
+        out_handle.write(result_handle.read())
+        out_handle.close()
 
-print(result_handle.read())
+    blast_record = NCBIXML.read(result_handle)
 
-with open("my_blast.xml", "w") as out_handle:
-    out_handle.write(result_handle.read())
-    out_handle.close()
+    elements = []
 
-blast_record = NCBIXML.read(result_handle)
+    for alignment in blast_record.alignments:
+        print(alignment.title)
+        print(alignment.hit_def)
 
-print(blast_record.alignments)
+        elements.append({ "title": alignment.title, "hit_def": alignment.hit_def })
 
-elements = []
+    with open(rid + ".csv", "w") as csv_handle:
+        csv_writer = csv.writer(csv_handle)
+        csv_writer.writerows(elements)
+        csv_handle.close()
 
-for alignment in blast_record.alignments:
-    print(alignment.title)
-    print(alignment.hit_def)
+    result_handle.close()
 
-    elements.append({ "title": alignment.title, "hit_def": alignment.hit_def })
-
-with open("my_blast.csv", "w") as csv_handle:
-    csv_writer = csv.writer(csv_handle)
-    csv_writer.writerows(elements)
-    csv_handle.close()
-
-result_handle.close()
+query_rid("blastn", "nt", "")
+'''
