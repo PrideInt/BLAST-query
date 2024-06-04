@@ -32,6 +32,22 @@ An example prompt you will be shown:
 
 Inputting `y` or `Y` will convert all FASTQ/GENBANK files while `n` or `N` will skip all the FASTQ/GENBANK files for conversion.
 
+## To CSV
+
+The script `hits_to_csv.py` allows the user to convert data collected from NCBI BLAST into a CSV file that can be read.
+
+(You are able to get this data by downloading the XML file of your BLAST results by heading over to **"Recent Results"** at NCBI BLAST,
+clicking a job under **Request ID**, click where it says **"Download All"** next to the row that says **"RID"**, and selecting **XML**)
+
+Place the XML file into the folder where the script is located, then change where it says `file = "test.xml"` to `file = "<your xml file>.xml"`,
+replacing `<your xml file>` with the name of your XML file.
+
+Then, you execute `python hits_to_csv.py` in Terminal, or PowerShell, and it will convert the data found here into a CSV file.
+
+## Automating Graph Creation
+
+Additionally, when you run `python hits_to_csv.py`, it will show you a graph representation of your data in the form of a pie chart.
+
 ## Query
 
 To query, all you have to do is execute the command `python blast.py` inside the directory the Python file
@@ -45,4 +61,8 @@ BLAST request.
 
 ```js
 pip install biopython
+```
+
+```js
+pip install matplotlib
 ```
