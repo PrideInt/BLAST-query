@@ -44,6 +44,16 @@ for spec in species:
     ratios.append((species.count(spec) / len(species)) * 100)
     labels.append(spec)
 
+with open(file.split(".")[0] + ".csv", "w") as csv_handle:
+    writer = csv.DictWriter(csv_handle, fieldnames = information[0].keys())
+
+    writer.writeheader()
+    
+    for info in information:
+        writer.writerow(info)
+
+    csv_handle.close()
+
 plt.pie(ratios, labels = labels, autopct = "%1.1f%%")
 plt.legend(title = "Species")
 plt.show()
