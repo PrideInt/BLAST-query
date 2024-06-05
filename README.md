@@ -1,8 +1,8 @@
 # Automating NCBI BLAST Requests and Parse to CSV
-Query from NCBI BLAST and parse into CSV file.
+Automating NCBI BLAST requests - formatting data, graph representation, querying, and more!
 
 > [!NOTE]
-> In progress. Currently operates on `blastn` (`nt` database).
+> In progress. ~~Currently operates on `blastn` (`nt` database).~~
 
 > **TODO LIST**:
 > - Operate on multiple BLAST databases.
@@ -39,10 +39,15 @@ The script `hits_to_csv.py` allows the user to convert data collected from NCBI 
 (You are able to get this data by downloading the XML file of your BLAST results by heading over to **"Recent Results"** at NCBI BLAST,
 clicking a job under **Request ID**, click where it says **"Download All"** next to the row that says **"RID"**, and selecting **XML**)
 
-Place the XML file into the folder where the script is located, then change where it says `file = "test.xml"` to `file = "<your xml file>.xml"`,
-replacing `<your xml file>` with the name of your XML file.
+Place the XML file into the folder where the script is located, then, execute `python hits_to_csv.py` in Terminal, or PowerShell, and it 
+will bring you a prompt:
 
-Then, you execute `python hits_to_csv.py` in Terminal, or PowerShell, and it will convert the data found here into a CSV file.
+```
+Enter the name of the file you want to analyze and convert:
+```
+
+In which you must type in the **EXACT** name of the XML file you want to analyze and parse and convert to a CSV format.
+After which, the script will convert the data found here into a CSV file.
 
 ## Automating Graph Creation
 
