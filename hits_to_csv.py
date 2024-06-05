@@ -1,8 +1,17 @@
 from Bio.Blast import NCBIWWW, NCBIXML
 import matplotlib.pyplot as plt
 import csv
+import os
 
-file = "test.xml"
+file_name = input("Enter the name of the XML file you want to analyze and convert: ")
+file = file_name + ".xml"
+
+while True:
+    if file in os.listdir("."):
+        break
+    else:
+        file_name = input("File not found. Please enter the EXACT name of the XML file you want to analyze and convert: ")
+        file = file_name + ".xml"
 
 def read_hits(file):
     xml = open(file, "r")
